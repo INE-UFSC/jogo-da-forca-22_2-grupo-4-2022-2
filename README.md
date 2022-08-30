@@ -1,2 +1,6 @@
-# jogo-da-forca-22_2-grupo-4-2022-2
-jogo-da-forca-22_2-grupo-4-2022-2 created by GitHub Classroom
+
+TODO
+-> Fazer o banco de dados (gerenciador de palavras)
+-> Arrumar tela de derrota e vitoria
+-> Fazer a arte da forca (pique surrealismo neocontemporaneo)
+
