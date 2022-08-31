@@ -1,6 +1,10 @@
 
-# TODO
--> Fazer o banco de dados (gerenciador de palavras)
--> Arrumar tela de derrota e vitoria
--> Fazer a arte da forca (pique surrealismo neocontemporaneo)
+# To do
 
+- [ ] Fazer o banco de dados (gerenciador de palavras)
+- [ ] Fazer tela de derrota/vitoria e de apresentacao
+- [ ] Fazer a forca
+- [ ] Limitar as tentativas do usuario
+- [ ] Validacao de entrada
+
+Data: 22:46 - 30/08/2022
