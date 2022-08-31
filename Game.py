@@ -3,14 +3,14 @@ import os
 from Word import Word
 from Player import Player
 from State import InMenu, InGame, InEndGame
-        
+from FakeDictionary import FakeDictionary
             
 class Game:
 
     def __init__(self):
-        # Adicionar o gerador de palavras e enviar como parametro no construtor de Word
+        self.word_pool = FakeDictionary();
         self.running = True
-        self.word = Word()
+        self.word = Word(self.word_pool.get_random_word())
         self.player = Player()
         self.state = InMenu(self)
         self.result = ""
@@ -45,6 +45,7 @@ class Game:
         self.state = new_state
 
     def reset(self):
+        self.word.set_password(self.word_pool.get_random_word());
         self.word.reset()
         self.player.reset()
         self.result = "CONTINUE"
