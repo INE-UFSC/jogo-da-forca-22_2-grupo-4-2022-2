@@ -1,4 +1,5 @@
 from Game import Game
 
-hangman = Game()
-hangman.run()
+if __name__ == "__main__":
+    hangman = Game()
+    hangman.run()

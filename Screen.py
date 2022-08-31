@@ -1,10 +1,13 @@
 
+# Talvez reestruturar a screen para nao receber nenhum parametro
 class Screen:
     
     def render(self, password_with_mask, letters, errors):
         print("Palavra:", password_with_mask)
-        print("Letras:", letters)
-        print("Erros:", errors)
+        print("Letras:", end=' ')
+        for letter in letters:
+            print(letter, end=' ')
+        print("\nErros:", errors)
 
 #  ____
 # /   |
