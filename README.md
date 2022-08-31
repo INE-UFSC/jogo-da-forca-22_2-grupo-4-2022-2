@@ -7,4 +7,4 @@
 - [x] Limitar as tentativas do usuario
 - [x] Validação de entrada
 
-Data: 22:46 - 30/08/2022
+Data: 23:28 - 30/08/2022
