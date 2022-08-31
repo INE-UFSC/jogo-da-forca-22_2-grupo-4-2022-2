@@ -2,7 +2,7 @@
 # To do
 
 - [ ] Fazer o banco de dados (gerenciador de palavras)
-- [ ] Fazer tela de derrota/vitoria e de apresentacao
+- [ ] Fazer tela de derrota/vitória e de apresentação
 - [ ] Fazer a forca
 - [x] Limitar as tentativas do usuario
 - [x] Validação de entrada
