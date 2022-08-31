@@ -1,10 +1,8 @@
 
 # To do
 
-- [ ] Fazer o banco de dados (gerenciador de palavras)
-- [ ] Fazer tela de derrota/vitória e de apresentação
+- [ ] Fazer o banco de dados (gerenciador de palavras ou  mesmo um banco de dados)
 - [ ] Fazer a forca
-- [x] Limitar as tentativas do usuario
-- [x] Validação de entrada
+- [ ] Melhorar o estilo de cada tela (do menu, do jogo, do final do jogo)
 
-Data: 23:28 - 30/08/2022
+Data: 16:31 - 31/08/2022
