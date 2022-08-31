@@ -6,6 +6,9 @@ class Player:
     def __init__(self):
         self.attempts = []
 
+    def reset(self):
+        self.attempts.clear()
+
     def add_attempt(self, new_attempt):
         self.attempts.append(new_attempt)
 

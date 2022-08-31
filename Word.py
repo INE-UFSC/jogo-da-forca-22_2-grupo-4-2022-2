@@ -5,6 +5,9 @@ class Word:
         self.password = password
         self.mask = [False for _ in self.password]
     
+    def reset(self):
+        self.mask = [False for _ in self.password]
+
     def get_password(self):
         return self.password
     
