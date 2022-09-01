@@ -46,7 +46,7 @@ class InGame(State):
         super().render()
         print(Gallows[self.owner.player.get_errors()])
         print(self.owner.word.get_password_with_mask())
-        print("Letras já tentadas: ", end='')
+        print("\nLetras já tentadas: ", end='')
         for letter in self.owner.player.get_all_letters():
             print(letter, end=' ')
         print()
@@ -71,11 +71,11 @@ class InEndGame(State):
 
     def render(self):
         super().render()
-        print(self.owner.word.get_password())
         if self.owner.get_result() == "GANHOU":
             print(Victory)
         else:
             print(Defeat)
+        print("A palvra secreta era " + self.owner.word.get_password())
 
     def update(self):
         input("Aperte enter para continuar")
