@@ -8,7 +8,7 @@ from FakeDictionary import FakeDictionary
 class Game:
 
     def __init__(self):
-        self.word_pool = FakeDictionary();
+        self.word_pool = FakeDictionary()
         self.running = True
         self.word = Word(self.word_pool.get_random_word())
         self.player = Player()

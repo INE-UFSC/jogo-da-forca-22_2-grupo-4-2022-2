@@ -1,5 +1,5 @@
 from Attempt import Attempt
-from Sprites import Gallows, Victory, Defeat
+from Sprites import Gallows, Welcome, Goodbye, Victory, Defeat
 
 
 class State:
@@ -22,6 +22,7 @@ class InMenu(State):
         super().render()
 
     def update(self):
+        print(Welcome)
         option = input("Quer jogar forca [s/n]? ").upper().strip()
         while len(option) > 1 or not option in "SN":
             print("Por favor, escolha s (sim) ou n (nao)!")
@@ -32,6 +33,8 @@ class InMenu(State):
             self.owner.reset()
         elif option == 'N':
             self.owner.close()
+            print()
+            print(Goodbye)
 
 
 class InGame(State):
@@ -43,8 +46,10 @@ class InGame(State):
         super().render()
         print(Gallows[self.owner.player.get_errors()])
         print(self.owner.word.get_password_with_mask())
-        print(self.owner.player.get_all_letters())
-        print(self.owner.player.get_errors())
+        print("Letras já tentadas: ", end='')
+        for letter in self.owner.player.get_all_letters():
+            print(letter, end=' ')
+        print()
 
     def update(self):
         letter = self.owner.get_input()
@@ -66,9 +71,8 @@ class InEndGame(State):
 
     def render(self):
         super().render()
-        print("Fim do jogo")
         print(self.owner.word.get_password())
-        if self.owner.get_result() == "VENCEU":
+        if self.owner.get_result() == "GANHOU":
             print(Victory)
         else:
             print(Defeat)

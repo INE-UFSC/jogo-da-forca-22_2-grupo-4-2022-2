@@ -1,4 +1,7 @@
 
+# Fazendo deste modo a classe WORD, fica fácil alterar o objeto que gera a palvara (pouco acoplamento)
+# Assim, basta apenas enviar como parametro do construtor ou mesmo setar a partir do método set_password()
+
 class Word:
     
     def __init__(self, password="PALAVRA"):
