@@ -20,10 +20,17 @@ class InMenu(State):
 
     def render(self):
         super().render()
+        print(Welcome)
+        print("\nGrupo 4 - Augusto, Gian, Micael, Joao\n")
+        print("Este eh um jogo da forca")
+        print("As regras sao bem simples")
+        print("Digite uma letra do alfabeto...")
+        print("ate que voce nao tenha mais tentativas ou...")
+        print("ate que voce desvende a palavra")
+        print()
 
     def update(self):
-        print(Welcome)
-        option = input("Quer jogar forca [s/n]? ").upper().strip()
+        option = input("Bora jogar [s/n]? ").upper().strip()
         while len(option) > 1 or not option in "SN":
             print("Por favor, escolha s (sim) ou n (nao)!")
             option = input("Quer jogar forca [s/n]? ").upper().strip()
@@ -76,7 +83,8 @@ class InEndGame(State):
         else:
             print(Defeat)
         print("A palvra secreta era " + self.owner.word.get_password())
+        print()
 
     def update(self):
-        input("Aperte enter para continuar")
+        input("Aperte enter para continuar...")
         self.owner.change_state(InMenu(self.owner))
