@@ -1,7 +1,7 @@
 
 class Player:
 
-    max_errors = 5
+    max_errors = 6
 
     def __init__(self):
         self.attempts = []

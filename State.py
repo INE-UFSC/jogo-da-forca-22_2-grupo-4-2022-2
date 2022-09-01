@@ -1,4 +1,5 @@
 from Attempt import Attempt
+from Sprites import Gallows, Victory, Defeat
 
 
 class State:
@@ -40,6 +41,7 @@ class InGame(State):
 
     def render(self):
         super().render()
+        print(Gallows[self.owner.player.get_errors()])
         print(self.owner.word.get_password_with_mask())
         print(self.owner.player.get_all_letters())
         print(self.owner.player.get_errors())
@@ -66,7 +68,10 @@ class InEndGame(State):
         super().render()
         print("Fim do jogo")
         print(self.owner.word.get_password())
-        print(self.owner.get_result())
+        if self.owner.get_result() == "VENCEU":
+            print(Victory)
+        else:
+            print(Defeat)
 
     def update(self):
         input("Aperte enter para continuar")

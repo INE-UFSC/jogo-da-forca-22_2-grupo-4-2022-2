@@ -2,7 +2,7 @@
 import os
 from Word import Word
 from Player import Player
-from State import InMenu, InGame, InEndGame
+from State import InMenu
 from FakeDictionary import FakeDictionary
             
 class Game:
