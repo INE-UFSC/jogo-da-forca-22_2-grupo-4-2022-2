@@ -39,7 +39,7 @@ class Game:
         self.word.reset(self.word_generator.get_word())
         self.player.reset()
         self.helper.reset()
-        self.result = "CONTINUE"
+        self.checker.reset()
 
     def change_state(self, new_state):
         self.state = new_state

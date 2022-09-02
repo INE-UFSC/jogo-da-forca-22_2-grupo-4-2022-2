@@ -1,5 +1,6 @@
 from Attempt import Attempt
 from Sprites import Gallows, Welcome, Goodbye, Victory, Defeat
+from InputController import InputController
 
 
 class State:
@@ -56,20 +57,14 @@ class InGame(State):
         print()
 
     def update(self):
+        user_input = InputController().get_input()
 
-        if self.owner.help_controller.is_possible_to_help():
-            need_help = input("Deseja alguma dica [s/n]? ").upper().strip()
-            while len(need_help) != 1 or not need_help in "SN":
-                print("Nao entendi. Digite novamente!")
-                need_help = input("Deseja alguma dica [s/n]? ").upper().strip()
-            if need_help == 'S':
-                self.owner.help_controller.update()
-                return
-        
-        self.owner.attempt_controller.update()
-
-        if self.owner.attempt_controller.game_is_over():
-            self.owner.change_state(InEndGame(self.owner))
+        if user_input == "DICA":
+            self.owner.help_controller.update()
+        else:
+            self.owner.attempt_controller.update(user_input)
+            if self.owner.attempt_controller.game_is_over():
+                self.owner.change_state(InEndGame(self.owner))
 
 
 class InEndGame(State):

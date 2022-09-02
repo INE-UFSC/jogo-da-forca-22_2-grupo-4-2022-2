@@ -6,6 +6,9 @@ class Checker:
         self.word = word
         self.result = "CONTINUE"
     
+    def reset(self):
+        self.result = "CONTINUE"
+
     def set_player(self, new_player):
         self.player = new_player
 

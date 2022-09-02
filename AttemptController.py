@@ -14,15 +14,11 @@ class AttemptController:
     def get_result(self):
         return self.checker.get_result()
 
-    def get_letter(self):
-        letter = input("Letra: ").upper().strip()
-        while (len(letter) > 1) or (not letter.isalpha()) or (letter in self.player.get_all_letters()):
-            print("Escolha inválida")
-            letter = input("Letra: ").upper().strip()
-        return letter
-
-    def update(self):   
-        letter = self.get_letter()
+    def update(self, letter):   
+        
+        if letter in self.player.get_all_letters():
+            return
+        
         attempt = Attempt(letter)
         if self.word.have(letter):
             self.word.reveal(letter)
