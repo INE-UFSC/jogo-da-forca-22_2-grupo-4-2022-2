@@ -1,4 +1,4 @@
-from Attempt import Attempt
+from model.Attempt import Attempt
 
 
 class AttemptController:
@@ -24,4 +24,3 @@ class AttemptController:
             self.word.reveal(letter)
             attempt.set_correct(True)
         self.player.add_attempt(attempt)
-        self.checker.check()

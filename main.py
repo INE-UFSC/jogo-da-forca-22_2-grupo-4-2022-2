@@ -1,4 +1,4 @@
-from Game import Game
+from model.Game import Game
 
 if __name__ == "__main__":
     hangman = Game()

@@ -1,17 +1,20 @@
-from Attempt import Attempt
-from Sprites import Gallows, Welcome, Goodbye, Victory, Defeat
-from InputController import InputController
+from model.Attempt import Attempt
+from view.Sprites import Gallows, Welcome, Goodbye, Victory, Defeat
+from controller.InputController import InputController
 
 
 class State:
 
     def __init__(self, owner):
         self.owner = owner
-    
-    def update(self): ...
 
     def render(self):
         self.owner.clear_console()
+
+    def update(self): ...
+
+    def handle_trasition(self): ...
+
 
 
 class InMenu(State):
@@ -29,7 +32,7 @@ class InMenu(State):
         print("Ate que voce desvende a palavra")
         print()
 
-    def update(self):
+    def handle_trasition(self):
         option = input("Bora jogar [s/n]? ").upper().strip()
         while len(option) > 1 or not option in "SN":
             print("Por favor, escolha s (sim) ou n (nao)!")
@@ -63,9 +66,11 @@ class InGame(State):
             self.owner.help_controller.update()
         else:
             self.owner.attempt_controller.update(user_input)
-            if self.owner.attempt_controller.game_is_over():
-                self.owner.change_state(InEndGame(self.owner))
-
+        
+    def handle_trasition(self):
+        self.owner.checker.check()
+        if self.owner.attempt_controller.game_is_over():
+            self.owner.change_state(InEndGame(self.owner))
 
 class InEndGame(State):
 
@@ -81,6 +86,8 @@ class InEndGame(State):
 
     def update(self):
         input("Aperte enter para continuar...")
+    
+    def handle_trasition(self):
         self.owner.change_state(InMenu(self.owner))
 
 class InCredits(State):
@@ -95,4 +102,7 @@ class InCredits(State):
 
     def update(self):
         input("Aperte enter para encerrar...")
+
+    def handle_trasition(self):
         self.owner.close()
+
