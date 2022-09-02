@@ -21,7 +21,6 @@ class InMenu(State):
     def render(self):
         super().render()
         print(Welcome)
-        print("\nGrupo 4 - Augusto, Gian, Micael, Joao\n")
         print("Este eh um jogo da forca")
         print("As regras sao bem simples")
         print("Digite uma letra do alfabeto...")
@@ -39,9 +38,7 @@ class InMenu(State):
             self.owner.change_state(InGame(self.owner))
             self.owner.reset()
         elif option == 'N':
-            self.owner.close()
-            print()
-            print(Goodbye)
+            self.owner.change_state(InCredits(self.owner))
 
 
 class InGame(State):
@@ -88,3 +85,17 @@ class InEndGame(State):
     def update(self):
         input("Aperte enter para continuar...")
         self.owner.change_state(InMenu(self.owner))
+
+class InCredits(State):
+
+    def __init__(self, owner):
+        super().__init__(owner)
+
+    def render(self):
+        super().render()
+        print(Goodbye)
+        print("\nBy Grupo 4 - Augusto, Gian, Micael, Joao\n")
+
+    def update(self):
+        input("Aperte enter para encerrar...")
+        self.owner.close()
