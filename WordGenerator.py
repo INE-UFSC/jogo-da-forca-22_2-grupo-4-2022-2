@@ -1,6 +1,6 @@
 from random import randint
 
-class FakeDictionary():
+class WordGenerator():
     
     all_words = [
         "ALFABETO",
@@ -34,7 +34,7 @@ class FakeDictionary():
     def __init__(self, dictionary = all_words):
         self.dictionary = dictionary;
     
-    def get_random_word(self):
+    def get_word(self):
         return self.dictionary[randint(0, len(self.dictionary) - 1)];
     
     

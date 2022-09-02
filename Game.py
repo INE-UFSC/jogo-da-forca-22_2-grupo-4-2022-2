@@ -3,15 +3,15 @@ import os
 from Word import Word
 from Player import Player
 from State import InMenu
-from FakeDictionary import FakeDictionary
+from WordGenerator import WordGenerator
 from Checker import Checker
             
 class Game:
 
     def __init__(self):
         self.running = True
-        self.word_pool = FakeDictionary()
-        self.word = Word(self.word_pool.get_random_word())
+        self.word_generator = WordGenerator()
+        self.word = Word(self.word_generator.get_word())
         self.player = Player()
         self.checker = Checker(self.player, self.word)
         self.state = InMenu(self)
@@ -26,8 +26,7 @@ class Game:
         os.system('cls' if os.name == 'nt' else 'clear')
     
     def reset(self):
-        self.word.set_password(self.word_pool.get_random_word());
-        self.word.reset()
+        self.word.reset(self.word_generator.get_word())
         self.player.reset()
         self.result = "CONTINUE"
 

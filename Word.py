@@ -8,7 +8,12 @@ class Word:
         self.password = password
         self.mask = [False for _ in self.password]
     
-    def reset(self):
+    def reset(self, new_password=None):
+        if not new_password is None:
+            self.set_password(new_password)
+        self.reset_mask()
+
+    def reset_mask(self):
         self.mask = [False for _ in self.password]
 
     def get_password(self):
@@ -26,9 +31,6 @@ class Word:
     
     def set_password(self, new_value):
         self.password = new_value
-        
-    def reset_mask(self):
-        self.mask = [False for _ in self.password]
     
     def have(self, letter):
         return (letter in self.password)
