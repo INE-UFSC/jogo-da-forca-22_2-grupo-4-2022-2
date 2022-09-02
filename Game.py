@@ -4,6 +4,7 @@ from Word import Word
 from Player import Player
 from State import InMenu
 from FakeDictionary import FakeDictionary
+from Checker import Checker
             
 class Game:
 
@@ -12,8 +13,8 @@ class Game:
         self.word_pool = FakeDictionary()
         self.word = Word(self.word_pool.get_random_word())
         self.player = Player()
+        self.checker = Checker(self.player, self.word)
         self.state = InMenu(self)
-        self.result = "CONTINUE"
 
     def close(self):
         self.running = False
@@ -23,6 +24,12 @@ class Game:
 
     def clear_console(self):
         os.system('cls' if os.name == 'nt' else 'clear')
+    
+    def reset(self):
+        self.word.set_password(self.word_pool.get_random_word());
+        self.word.reset()
+        self.player.reset()
+        self.result = "CONTINUE"
 
     def get_input(self):
         letter = input("Letra: ").upper().strip()
@@ -31,28 +38,17 @@ class Game:
             letter = input("Letra: ").upper().strip()
         return letter
 
-    def get_result(self):
-        return self.result
-
     def is_over(self):
-        return (self.result == "GANHOU" or self.result == "PERDEU")
+        return self.checker.game_is_over()
 
-    def check_result(self):
-        if self.word.was_unraveled():
-            self.result = "GANHOU"
-        elif not self.player.still_have_chance():
-            self.result = "PERDEU"
-        else:
-            self.result = "CONTINUE"
+    def check(self):
+        return self.checker.check()
+
+    def get_result(self):
+        return self.checker.get_result()
 
     def change_state(self, new_state):
         self.state = new_state
-
-    def reset(self):
-        self.word.set_password(self.word_pool.get_random_word());
-        self.word.reset()
-        self.player.reset()
-        self.result = "CONTINUE"
 
     def update(self):
         self.state.update()

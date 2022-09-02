@@ -63,7 +63,7 @@ class InGame(State):
             attempt.set_correct(True)
         self.owner.player.add_attempt(attempt)
 
-        self.owner.check_result()
+        self.owner.check()
         if self.owner.is_over():
             self.owner.change_state(InEndGame(self.owner))
 
@@ -75,10 +75,8 @@ class InEndGame(State):
 
     def render(self):
         super().render()
-        if self.owner.get_result() == "GANHOU":
-            print(Victory)
-        else:
-            print(Defeat)
+        print(Victory if self.owner.get_result() == "GANHOU"  else Defeat)
+
         print("A palvra secreta era " + self.owner.word.get_password())
         print()
 
