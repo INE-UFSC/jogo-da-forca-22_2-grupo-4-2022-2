@@ -2,6 +2,7 @@
 # To do
 
 - Melhorar gerador de palavras (por exemplo, suporte para acentos, pegar da internet e etc)
+- Adicionar controlador de tentativas e de ajuda
 
 # Doing
 
