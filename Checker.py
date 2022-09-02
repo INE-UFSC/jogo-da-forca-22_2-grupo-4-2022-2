@@ -22,7 +22,7 @@ class Checker:
         return False
 
     def check(self):
-        if self.word.was_unraveled():
+        if self.word.was_revealed():
             self.result = "GANHOU"
         elif not self.player.still_have_chance():
             self.result = "PERDEU"

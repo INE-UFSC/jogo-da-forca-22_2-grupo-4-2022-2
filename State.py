@@ -56,10 +56,20 @@ class InGame(State):
         print()
 
     def update(self):
-        letter = self.owner.get_input()
+
+        if self.owner.helper.is_possible_to_help():
+            need_help = input("Deseja alguma dica [s/n]? ").upper().strip()
+            while len(need_help) != 1 or not need_help in "SN":
+                print("Nao entendi. Digite novamente!")
+                need_help = input("Deseja alguma dica [s/n]? ").upper().strip()
+            if need_help == "S" and not self.owner.helper.already_helped():
+                self.owner.helper.help()
+                return
+
+        letter = self.owner.get_letter()
         attempt = Attempt(letter)
         if self.owner.word.have(letter):
-            self.owner.word.unravel(letter)
+            self.owner.word.reveal(letter)
             attempt.set_correct(True)
         self.owner.player.add_attempt(attempt)
 

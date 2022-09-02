@@ -18,6 +18,9 @@ class Word:
 
     def get_password(self):
         return self.password
+
+    def get_mask(self):
+        return self.mask[:]
     
     def get_password_with_mask(self):
         password_with_mask = ""
@@ -28,6 +31,15 @@ class Word:
                 password_with_mask += "_"
             password_with_mask += " "
         return password_with_mask
+
+    def get_unrevealed_letters(self):
+        password = self.get_password()
+        mask = self.get_mask()
+        letters = []
+        for index, letter in enumerate(password):
+            if mask[index] == 0 and not letter in letters:
+                letters.append(letter)
+        return letters[:]
     
     def set_password(self, new_value):
         self.password = new_value
@@ -35,10 +47,10 @@ class Word:
     def have(self, letter):
         return (letter in self.password)
     
-    def unravel(self, letter):
+    def reveal(self, letter):
         for index, word_letter in enumerate(self.password):
             if word_letter == letter:
                 self.mask[index] = True
                 
-    def was_unraveled(self):
+    def was_revealed(self):
         return (not 0 in self.mask)

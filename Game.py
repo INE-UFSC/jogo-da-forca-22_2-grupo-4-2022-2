@@ -5,6 +5,7 @@ from Player import Player
 from State import InMenu
 from WordGenerator import WordGenerator
 from Checker import Checker
+from Helper import Helper
             
 class Game:
 
@@ -14,6 +15,7 @@ class Game:
         self.word = Word(self.word_generator.get_word())
         self.player = Player()
         self.checker = Checker(self.player, self.word)
+        self.helper = Helper(self.word)
         self.state = InMenu(self)
 
     def close(self):
@@ -28,9 +30,10 @@ class Game:
     def reset(self):
         self.word.reset(self.word_generator.get_word())
         self.player.reset()
+        self.helper.reset()
         self.result = "CONTINUE"
 
-    def get_input(self):
+    def get_letter(self):
         letter = input("Letra: ").upper().strip()
         while (len(letter) > 1) or (not letter.isalpha()) or (letter in self.player.get_all_letters()):
             print("Escolha inválida")
