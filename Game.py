@@ -6,16 +6,24 @@ from State import InMenu
 from WordGenerator import WordGenerator
 from Checker import Checker
 from Helper import Helper
-            
+from HelpController import HelpController
+from AttemptController import AttemptController
+
+
 class Game:
 
     def __init__(self):
         self.running = True
+        
         self.word_generator = WordGenerator()
         self.word = Word(self.word_generator.get_word())
         self.player = Player()
         self.checker = Checker(self.player, self.word)
         self.helper = Helper(self.word)
+
+        self.help_controller = HelpController(self.helper)
+        self.attempt_controller = AttemptController(self.player, self.word, self.checker)
+
         self.state = InMenu(self)
 
     def close(self):
@@ -32,22 +40,6 @@ class Game:
         self.player.reset()
         self.helper.reset()
         self.result = "CONTINUE"
-
-    def get_letter(self):
-        letter = input("Letra: ").upper().strip()
-        while (len(letter) > 1) or (not letter.isalpha()) or (letter in self.player.get_all_letters()):
-            print("Escolha inválida")
-            letter = input("Letra: ").upper().strip()
-        return letter
-
-    def is_over(self):
-        return self.checker.game_is_over()
-
-    def check(self):
-        return self.checker.check()
-
-    def get_result(self):
-        return self.checker.get_result()
 
     def change_state(self, new_state):
         self.state = new_state

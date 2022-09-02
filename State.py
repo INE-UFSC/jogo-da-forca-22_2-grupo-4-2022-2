@@ -57,24 +57,18 @@ class InGame(State):
 
     def update(self):
 
-        if self.owner.helper.is_possible_to_help():
+        if not self.owner.help_controller.already_helped():
             need_help = input("Deseja alguma dica [s/n]? ").upper().strip()
             while len(need_help) != 1 or not need_help in "SN":
                 print("Nao entendi. Digite novamente!")
                 need_help = input("Deseja alguma dica [s/n]? ").upper().strip()
-            if need_help == "S" and not self.owner.helper.already_helped():
-                self.owner.helper.help()
+            if need_help == 'S':
+                self.owner.help_controller.update()
                 return
+        
+        self.owner.attempt_controller.update()
 
-        letter = self.owner.get_letter()
-        attempt = Attempt(letter)
-        if self.owner.word.have(letter):
-            self.owner.word.reveal(letter)
-            attempt.set_correct(True)
-        self.owner.player.add_attempt(attempt)
-
-        self.owner.check()
-        if self.owner.is_over():
+        if self.owner.attempt_controller.game_is_over():
             self.owner.change_state(InEndGame(self.owner))
 
 
@@ -85,7 +79,7 @@ class InEndGame(State):
 
     def render(self):
         super().render()
-        print(Victory if self.owner.get_result() == "GANHOU"  else Defeat)
+        print(Victory if self.owner.attempt_controller.get_result() == "GANHOU"  else Defeat)
 
         print("A palvra secreta era " + self.owner.word.get_password())
         print()

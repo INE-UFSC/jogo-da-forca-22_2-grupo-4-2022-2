@@ -19,9 +19,8 @@ class Helper:
         return (len(self.word.get_unrevealed_letters()) > 1 and not self.already_helped())
 
     def help(self):
-        letters = self.word.get_unrevealed_letters()
-        if len(letters) < 1:
-            return
-        self.word.reveal(letters[randint(0, len(letters) - 1)])
-        self.helped = True
+        if self.is_possible_to_help():
+            letters = self.word.get_unrevealed_letters()
+            self.word.reveal(letters[randint(0, len(letters) - 1)])
+            self.helped = True
 
