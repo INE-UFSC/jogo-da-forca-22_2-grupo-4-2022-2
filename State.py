@@ -24,8 +24,8 @@ class InMenu(State):
         print("Este eh um jogo da forca")
         print("As regras sao bem simples")
         print("Digite uma letra do alfabeto...")
-        print("ate que voce nao tenha mais tentativas ou...")
-        print("ate que voce desvende a palavra")
+        print("Ate que voce nao tenha mais tentativas ou...")
+        print("Ate que voce desvende a palavra")
         print()
 
     def update(self):

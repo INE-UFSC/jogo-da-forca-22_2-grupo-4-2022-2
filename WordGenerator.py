@@ -11,7 +11,7 @@ class WordGenerator():
         "FORMALMENTE",
         "GARIMPEIRO",
         "HEMOFILIA",
-        "INTRANSIGENTE",
+        "INDIO",
         "JOGO",
         "KONDZILLA",
         "LAUDO",
@@ -32,10 +32,10 @@ class WordGenerator():
     ]
     
     def __init__(self, dictionary = all_words):
-        self.dictionary = dictionary;
+        self.dictionary = dictionary
     
     def get_word(self):
-        return self.dictionary[randint(0, len(self.dictionary) - 1)];
+        return self.dictionary[randint(0, len(self.dictionary) - 1)]
     
     
     
