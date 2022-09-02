@@ -64,7 +64,7 @@ class InGame(State):
         self.owner.player.add_attempt(attempt)
 
         self.owner.result = self.owner.check_result()
-        if self.owner.result == "GANHOU" or self.owner.result == "PERDEU":
+        if self.owner.is_over():
             self.owner.change_state(InEndGame(self.owner))
 
 

@@ -8,8 +8,8 @@ from FakeDictionary import FakeDictionary
 class Game:
 
     def __init__(self):
-        self.word_pool = FakeDictionary()
         self.running = True
+        self.word_pool = FakeDictionary()
         self.word = Word(self.word_pool.get_random_word())
         self.player = Player()
         self.state = InMenu(self)
@@ -31,15 +31,18 @@ class Game:
             letter = input("Letra: ").upper().strip()
         return letter
 
+    def get_result(self):
+        return self.result
+
+    def is_over(self):
+        return (self.result == "GANHOU" or self.result == "PERDEU")
+
     def check_result(self):
         if self.word.was_unraveled():
             return "GANHOU"
         elif not self.player.still_have_chance():
             return "PERDEU"
         return "CONTINUE"
-
-    def get_result(self):
-        return self.result
 
     def change_state(self, new_state):
         self.state = new_state
