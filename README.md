@@ -5,6 +5,4 @@
 
 # Doing
 
-- Melhorando o sistema de entrada
-
-Data: 13:10 - 02/09/2022
+Data: 20:11 - 02/09/2022
