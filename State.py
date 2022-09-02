@@ -63,7 +63,7 @@ class InGame(State):
             attempt.set_correct(True)
         self.owner.player.add_attempt(attempt)
 
-        self.owner.result = self.owner.check_result()
+        self.owner.check_result()
         if self.owner.is_over():
             self.owner.change_state(InEndGame(self.owner))
 

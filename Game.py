@@ -13,7 +13,7 @@ class Game:
         self.word = Word(self.word_pool.get_random_word())
         self.player = Player()
         self.state = InMenu(self)
-        self.result = ""
+        self.result = "CONTINUE"
 
     def close(self):
         self.running = False
@@ -39,10 +39,11 @@ class Game:
 
     def check_result(self):
         if self.word.was_unraveled():
-            return "GANHOU"
+            self.result = "GANHOU"
         elif not self.player.still_have_chance():
-            return "PERDEU"
-        return "CONTINUE"
+            self.result = "PERDEU"
+        else:
+            self.result = "CONTINUE"
 
     def change_state(self, new_state):
         self.state = new_state
