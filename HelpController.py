@@ -7,5 +7,8 @@ class HelpController:
     def already_helped(self):
         return self.helper.already_helped()
 
+    def is_possible_to_help(self):
+        return self.helper.is_possible_to_help()
+
     def update(self):
         self.helper.help()

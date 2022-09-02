@@ -57,7 +57,7 @@ class InGame(State):
 
     def update(self):
 
-        if not self.owner.help_controller.already_helped():
+        if self.owner.help_controller.is_possible_to_help():
             need_help = input("Deseja alguma dica [s/n]? ").upper().strip()
             while len(need_help) != 1 or not need_help in "SN":
                 print("Nao entendi. Digite novamente!")

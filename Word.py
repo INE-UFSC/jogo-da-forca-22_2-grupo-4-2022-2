@@ -24,7 +24,7 @@ class Word:
     
     def get_password_with_mask(self):
         password_with_mask = ""
-        for index, letter in enumerate(self.password):
+        for index, letter in enumerate(self.get_password()):
             if self.mask[index]:
                 password_with_mask += letter
             else:
@@ -45,12 +45,15 @@ class Word:
         self.password = new_value
     
     def have(self, letter):
-        return (letter in self.password)
+        return (letter in self.get_password())
     
     def reveal(self, letter):
-        for index, word_letter in enumerate(self.password):
+        for index, word_letter in enumerate(self.get_password()):
             if word_letter == letter:
                 self.mask[index] = True
+
+    def is_there_letter_reveal(self):
+        return (True in self.get_mask())
                 
     def was_revealed(self):
-        return (not 0 in self.mask)
+        return (not False in self.get_mask())
